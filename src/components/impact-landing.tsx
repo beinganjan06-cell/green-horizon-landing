@@ -3,6 +3,7 @@ import { motion, useInView, useMotionValue, useSpring, useTransform } from "moti
 import {
   ArrowRight,
   BookOpen,
+  Download,
   ChevronRight,
   Facebook,
   Instagram,
@@ -28,6 +29,12 @@ import communityAsset from "@/assets/community.jpg.asset.json";
 import fieldStoryAsset from "@/assets/field-story.jpg.asset.json";
 import heroAsset from "@/assets/rural-hero.jpg.asset.json";
 import initiativesAsset from "@/assets/initiatives.jpg.asset.json";
+import sectorAgriculture from "@/assets/sector-agriculture.jpg.asset.json";
+import sectorBiodiversity from "@/assets/sector-biodiversity.jpg.asset.json";
+import sectorClimate from "@/assets/sector-climate.jpg.asset.json";
+import sectorEconomy from "@/assets/sector-economy.jpg.asset.json";
+import sectorEnergy from "@/assets/sector-energy.jpg.asset.json";
+import sectorHealth from "@/assets/sector-health.jpg.asset.json";
 
 const easing = [0.22, 1, 0.36, 1] as const;
 
@@ -102,11 +109,11 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="top" className="relative min-h-[760px] overflow-hidden bg-forest md:min-h-[820px]">
+    <section id="top" className="relative min-h-[680px] overflow-hidden bg-forest md:min-h-[760px]">
       <img src={heroAsset.url} alt="Farmer walking through green rice fields beneath misty hills" width={1920} height={1008} className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0 bg-hero-overlay" />
       <Header />
-      <div className="relative mx-auto flex min-h-[760px] max-w-7xl items-end px-5 pb-24 pt-36 md:min-h-[820px] md:items-center md:pb-0 lg:px-8">
+      <div className="relative mx-auto flex min-h-[680px] max-w-7xl items-end px-5 pb-20 pt-32 md:min-h-[760px] md:items-center md:pb-0 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: easing }} className="max-w-3xl text-primary-foreground">
           <p className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-sun"><span className="h-px w-8 bg-sun" /> Ideas that move people</p>
           <h1 className="font-display text-5xl font-extrabold leading-[1.02] sm:text-6xl md:text-7xl lg:text-[5.3rem]">
@@ -135,20 +142,20 @@ const pillars = [
 
 function Pillars() {
   return (
-    <section id="about" className="bg-surface py-24 md:py-32">
+    <section id="about" className="topo-pattern relative bg-surface py-18 md:py-22">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal className="mx-auto max-w-3xl text-center">
           <p className="eyebrow">How change takes root</p>
           <h2 className="section-title mt-4">We bring together three disciplines to create lasting change.</h2>
         </Reveal>
-        <div className="mt-16 grid gap-10 md:grid-cols-3 md:gap-6">
+        <div className="mt-11 grid gap-4 md:grid-cols-3">
           {pillars.map((pillar, index) => (
-            <Reveal key={pillar.title} delay={index * 0.1} className="text-center">
-              <motion.div whileHover={{ rotate: index === 1 ? 5 : -5, scale: 1.04 }} className={`mx-auto grid size-24 place-items-center rounded-full ${pillar.tone}`}>
+            <Reveal key={pillar.title} delay={index * 0.1} className="rounded-lg border border-border/70 bg-card/85 p-7 text-left shadow-card backdrop-blur-sm">
+              <motion.div whileHover={{ rotate: index === 1 ? 5 : -5, scale: 1.04 }} className={`grid size-16 place-items-center rounded-full ${pillar.tone}`}>
                 <pillar.icon className="size-10" strokeWidth={1.7} />
               </motion.div>
-              <h3 className="mt-6 font-display text-2xl font-bold">{pillar.title}</h3>
-              <p className="mx-auto mt-3 max-w-xs text-sm leading-6 text-muted-foreground">{pillar.copy}</p>
+              <h3 className="mt-5 font-display text-2xl font-bold">{pillar.title}</h3>
+              <p className="mt-2 max-w-xs text-sm leading-6 text-muted-foreground">{pillar.copy}</p>
             </Reveal>
           ))}
         </div>
@@ -177,7 +184,7 @@ const stats = [
 
 function Impact() {
   return (
-    <section className="overflow-hidden bg-soft py-24 md:py-32">
+    <section className="overflow-hidden bg-soft py-18 md:py-22">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid items-end gap-12 lg:grid-cols-[1.1fr_.9fr]">
           <Reveal>
@@ -188,12 +195,13 @@ function Impact() {
             <p className="max-w-xl text-base leading-7 text-muted-foreground">Our work lives where climate, livelihoods and public systems meet. We collaborate with communities and institutions to design practical change that holds.</p>
           </Reveal>
         </div>
-        <div className="mt-14 grid overflow-hidden rounded-lg bg-primary text-primary-foreground md:grid-cols-3">
+        <div className="mt-10 grid overflow-hidden rounded-lg bg-primary text-primary-foreground shadow-card md:grid-cols-3">
           {stats.map((stat, index) => (
             <div key={stat.label} className="relative border-b border-primary-foreground/15 p-8 last:border-0 md:border-b-0 md:border-r md:last:border-r-0 lg:p-10">
               <span className="absolute right-4 top-2 font-display text-8xl font-black text-primary-foreground/5">0{index + 1}</span>
               <p className="font-display text-5xl font-extrabold text-sun md:text-6xl"><AnimatedNumber value={stat.value} suffix={stat.suffix} /></p>
               <p className="mt-2 text-sm font-medium text-primary-foreground/75">{stat.label}</p>
+              <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-primary-foreground/15"><motion.div initial={{ width: 0 }} whileInView={{ width: `${72 + index * 9}%` }} viewport={{ once: true }} transition={{ duration: 1, delay: index * 0.14 }} className="h-full rounded-full bg-sun" /></div>
             </div>
           ))}
         </div>
@@ -203,12 +211,12 @@ function Impact() {
 }
 
 const sectors = [
-  { name: "Agriculture", icon: Sprout, title: "Growing resilient choices", copy: "Helping farmers test, trust and adopt climate-smart practices that work in their fields.", tone: "bg-mint", art: "from-mint to-secondary" },
-  { name: "Climate", icon: Sun, title: "Making climate action personal", copy: "Translating distant risks into choices people can understand and act on today.", tone: "bg-peach", art: "from-peach to-secondary" },
-  { name: "Biodiversity", icon: Leaf, title: "Reconnecting people and nature", copy: "Using local stories and shared experience to inspire stewardship of living landscapes.", tone: "bg-sky", art: "from-sky to-secondary" },
-  { name: "Clean Energy", icon: Zap, title: "Powering an inclusive transition", copy: "Building awareness and confidence around cleaner, more accessible energy choices.", tone: "bg-sun/30", art: "from-sun/30 to-secondary" },
-  { name: "Health & Sanitation", icon: Users, title: "Turning knowledge into healthier habits", copy: "Designing communication around the realities of homes, families and public spaces.", tone: "bg-rose", art: "from-rose to-secondary" },
-  { name: "Economy", icon: Mountain, title: "Strengthening local livelihoods", copy: "Creating pathways where sustainable choices also support dignity and opportunity.", tone: "bg-lilac", art: "from-lilac to-secondary" },
+  { name: "Agriculture", icon: Sprout, title: "Growing resilient choices", copy: "Helping farmers test, trust and adopt climate-smart practices that work in their fields.", tone: "bg-mint", image: sectorAgriculture.url, meta: "Farmer learning · Odisha" },
+  { name: "Climate", icon: Sun, title: "Making climate action personal", copy: "Translating distant risks into choices people can understand and act on today.", tone: "bg-peach", image: sectorClimate.url, meta: "Climate dialogue · Kerala" },
+  { name: "Biodiversity", icon: Leaf, title: "Reconnecting people and nature", copy: "Using local stories and shared experience to inspire stewardship of living landscapes.", tone: "bg-sky", image: sectorBiodiversity.url, meta: "Field survey · Western Ghats" },
+  { name: "Clean Energy", icon: Zap, title: "Powering an inclusive transition", copy: "Building awareness and confidence around cleaner, more accessible energy choices.", tone: "bg-sun/30", image: sectorEnergy.url, meta: "Solar livelihoods · Karnataka" },
+  { name: "Health & Sanitation", icon: Users, title: "Turning knowledge into healthier habits", copy: "Designing communication around the realities of homes, families and public spaces.", tone: "bg-rose", image: sectorHealth.url, meta: "Community health · Maharashtra" },
+  { name: "Economy", icon: Mountain, title: "Strengthening local livelihoods", copy: "Creating pathways where sustainable choices also support dignity and opportunity.", tone: "bg-lilac", image: sectorEconomy.url, meta: "Local enterprise · Assam" },
 ];
 
 function SectorExplorer() {
@@ -216,10 +224,10 @@ function SectorExplorer() {
   const sector = sectors[active] ?? sectors[0];
   if (!sector) return null;
   return (
-    <section id="our-work" className="bg-surface py-24 md:py-32">
+    <section id="our-work" className="bg-surface py-18 md:py-22">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal><p className="eyebrow">Our sectors</p><h2 className="section-title mt-4">Working across multiple sectors.</h2></Reveal>
-        <div className="mt-14 grid overflow-hidden rounded-lg border border-border lg:grid-cols-[.8fr_1.65fr]">
+        <div className="mt-10 grid overflow-hidden rounded-lg border border-border bg-card shadow-card lg:grid-cols-[.9fr_1.65fr]">
           <div role="tablist" aria-label="Sectors" className="grid grid-cols-2 border-b border-border bg-soft p-3 sm:grid-cols-3 lg:block lg:border-b-0 lg:border-r lg:p-5">
             {sectors.map((item, index) => (
               <button key={item.name} role="tab" aria-selected={active === index} onClick={() => setActive(index)} className={`flex min-h-14 w-full items-center gap-3 rounded-md px-3 text-left text-sm font-semibold transition-colors lg:px-4 ${active === index ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-secondary"}`}>
@@ -227,8 +235,8 @@ function SectorExplorer() {
               </button>
             ))}
           </div>
-          <div className="relative min-h-[440px] overflow-hidden p-6 sm:p-10 lg:min-h-[520px] lg:p-14">
-            <motion.div key={sector.name} initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, ease: easing }} className="grid h-full items-center gap-10 sm:grid-cols-[1fr_1.1fr]">
+          <div className="relative min-h-[430px] overflow-hidden p-5 sm:p-8 lg:min-h-[500px] lg:p-9">
+            <motion.div key={sector.name} initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, ease: easing }} className="grid h-full items-center gap-7 sm:grid-cols-[.85fr_1.25fr]">
               <div>
                 <span className={`inline-flex size-14 items-center justify-center rounded-full ${sector.tone}`}><sector.icon className="size-6 text-primary" /></span>
                 <p className="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-accent-warm">{sector.name}</p>
@@ -236,12 +244,10 @@ function SectorExplorer() {
                 <p className="mt-4 text-sm leading-7 text-muted-foreground">{sector.copy}</p>
                 <a href="#stories" className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-primary">See related work <ArrowRight className="size-4" /></a>
               </div>
-              <div className={`relative aspect-square overflow-hidden rounded-full bg-gradient-to-br ${sector.art}`}>
-                <div className="absolute inset-x-[12%] bottom-[12%] h-[38%] rounded-[50%] bg-primary/90" />
-                <div className="absolute left-[44%] top-[16%] h-[54%] w-2 rounded-full bg-accent-warm" />
-                <div className="absolute left-[25%] top-[25%] size-[28%] rounded-full bg-sun" />
-                <div className="absolute right-[17%] top-[34%] size-[22%] rounded-full bg-ocean" />
-                <sector.icon className="absolute left-1/2 top-1/2 size-20 -translate-x-1/2 -translate-y-1/2 text-primary-foreground" strokeWidth={1.2} />
+              <div className="group relative aspect-[4/3] overflow-hidden rounded-lg">
+                <img loading="lazy" src={sector.image} width={1200} height={900} alt={`${sector.name} field programme`} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-transparent to-transparent" />
+                <span className="absolute bottom-4 left-4 rounded-full border border-primary-foreground/25 bg-forest/70 px-3 py-1.5 text-xs font-semibold text-primary-foreground backdrop-blur-md">{sector.meta}</span>
               </div>
             </motion.div>
           </div>
@@ -272,21 +278,21 @@ function FieldStory() {
 }
 
 const stories = [
-  { title: "Gamified Learning", tag: "Initiative", by: "Learning Lab", position: "0% 0%" },
-  { title: "Storytelling for Change", tag: "Case study", by: "Meera Nair", position: "100% 0%" },
-  { title: "Biodiversity Through Theatre", tag: "Field story", by: "Community Team", position: "0% 100%" },
-  { title: "Capturing Field Stories", tag: "Watch", by: "Media Lab", position: "100% 100%", video: true },
+  { title: "Gamified Learning", tag: "Initiative", by: "Learning Lab", position: "0% 0%", initials: "LL" },
+  { title: "Storytelling for Change", tag: "Case study", by: "Meera Nair", position: "100% 0%", initials: "MN" },
+  { title: "Biodiversity Through Theatre", tag: "Field story", by: "Community Team", position: "0% 100%", initials: "CT" },
+  { title: "Capturing Field Stories", tag: "Watch", by: "Media Lab", position: "100% 100%", initials: "ML", video: true },
 ];
 
 function Stories() {
   return (
-    <section id="stories" className="bg-soft py-24 md:py-32">
+    <section id="stories" className="topo-pattern bg-soft py-18 md:py-22">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <div><p className="eyebrow">Ideas in action</p><h2 className="section-title mt-4">Initiatives & case studies.</h2></div>
           <a href="#resources" className="inline-flex items-center gap-2 text-sm font-bold text-primary">View all stories <ArrowRight className="size-4" /></a>
         </Reveal>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {stories.map((story, index) => (
             <motion.article key={story.title} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }} whileHover={{ y: -8, rotate: index % 2 ? 0.7 : -0.7 }} className="group overflow-hidden rounded-lg bg-card shadow-card">
               <div className="relative aspect-[4/5] overflow-hidden">
@@ -294,9 +300,9 @@ function Stories() {
                 <span className="absolute left-4 top-4 rounded-full bg-surface px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-primary">{story.tag}</span>
                 {story.video && <span className="absolute inset-0 grid place-items-center bg-foreground/15"><span className="grid size-14 place-items-center rounded-full bg-sun text-forest transition-transform group-hover:scale-110"><Play className="ml-0.5 size-5 fill-current" /></span></span>}
               </div>
-              <div className="p-5">
+              <div className="border-t border-border/70 p-5">
                 <h3 className="font-display text-xl font-bold leading-tight">{story.title}</h3>
-                <p className="mt-3 text-xs font-medium text-muted-foreground">By {story.by}</p>
+                <div className="mt-4 flex items-center gap-2.5"><span className="grid size-8 place-items-center rounded-full bg-secondary text-[10px] font-bold text-primary">{story.initials}</span><p className="text-xs font-medium text-muted-foreground">By {story.by}</p></div>
               </div>
             </motion.article>
           ))}
@@ -308,10 +314,11 @@ function Stories() {
 
 function Community() {
   return (
-    <section className="bg-surface py-24 md:py-32">
+    <section className="bg-surface py-18 md:py-22">
       <div className="mx-auto grid max-w-7xl px-5 lg:grid-cols-[1.55fr_.65fr] lg:px-8">
-        <Reveal className="min-h-[440px] overflow-hidden rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none">
+        <Reveal className="relative min-h-[410px] overflow-hidden rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none">
           <img loading="lazy" src={communityAsset.url} width={1600} height={912} alt="Community members and field team together in a village" className="h-full w-full object-cover" />
+          <div className="absolute bottom-5 left-5 flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-forest/75 px-4 py-2 text-xs font-semibold text-primary-foreground backdrop-blur-md"><span className="size-2 rounded-full bg-sun" /> 42 collaborators in the field</div>
         </Reveal>
         <Reveal delay={0.1} className="flex flex-col justify-between rounded-b-lg bg-accent-warm p-8 text-accent-warm-foreground lg:rounded-r-lg lg:rounded-bl-none lg:p-10">
           <Users className="size-10" strokeWidth={1.5} />
@@ -334,19 +341,19 @@ const insights = [
 
 function Insights() {
   return (
-    <section id="resources" className="bg-soft py-24 md:py-32">
+    <section id="resources" className="bg-soft py-18 md:py-22">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal><p className="eyebrow">Insights & knowledge hub</p><h2 className="section-title mt-4">Learning worth sharing.</h2></Reveal>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
           {insights.map((item, index) => (
             <Reveal key={item.title} delay={index * 0.08}>
-              <article className="group h-full overflow-hidden rounded-lg border border-border bg-card">
-                <div className={`relative flex aspect-[16/10] items-center justify-center ${item.tone}`}>
+               <article className="group h-full overflow-hidden rounded-lg border border-border bg-card shadow-card transition-transform duration-300 hover:-translate-y-1">
+                 <div className={`topo-pattern relative flex aspect-[16/10] items-center justify-center ${item.tone}`}>
                   <div className="absolute inset-5 border border-current opacity-25" />
                   <item.icon className="size-16 opacity-80 transition-transform group-hover:scale-110" strokeWidth={1.2} />
                   <span className="absolute bottom-5 left-5 text-[10px] font-bold uppercase tracking-[0.17em]">Rooted / Knowledge Series</span>
                 </div>
-                <div className="p-6"><p className="text-xs font-bold uppercase tracking-[0.14em] text-accent-warm">{item.type}</p><h3 className="mt-3 font-display text-xl font-bold leading-snug">{item.title}</h3><a href="#contact" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary">Explore resource <ArrowRight className="size-4" /></a></div>
+                 <div className="p-6"><div className="flex items-center justify-between gap-3"><p className="text-xs font-bold uppercase tracking-[0.14em] text-accent-warm">{item.type}</p><span className="inline-flex items-center gap-1 rounded-full bg-secondary px-2.5 py-1 text-[10px] font-bold text-primary"><Download className="size-3" /> PDF</span></div><h3 className="mt-3 font-display text-xl font-bold leading-snug">{item.title}</h3><a href="#contact" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary">Explore resource <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></a></div>
               </article>
             </Reveal>
           ))}
