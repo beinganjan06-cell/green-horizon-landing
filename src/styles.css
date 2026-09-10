@@ -19,8 +19,8 @@
  */
 
 @theme inline {
-  --font-sans: "Manrope", ui-sans-serif, sans-serif;
-  --font-display: "Manrope", ui-sans-serif, sans-serif;
+  --font-sans: "Figtree", ui-sans-serif, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -77,29 +77,29 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.985 0.006 106);
+  --background: oklch(0.975 0.012 103);
   --foreground: oklch(0.235 0.045 147);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.45 0.145 145);
+  --primary: oklch(0.48 0.135 145);
   --primary-foreground: oklch(0.99 0.006 105);
   --secondary: oklch(0.955 0.025 132);
   --secondary-foreground: oklch(0.28 0.07 146);
   --muted: oklch(0.96 0.012 106);
   --muted-foreground: oklch(0.49 0.035 145);
-  --accent: oklch(0.76 0.17 66);
+  --accent: oklch(0.82 0.17 84);
   --accent-foreground: oklch(0.25 0.05 145);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(0.89 0.02 125);
   --input: oklch(0.89 0.02 125);
   --ring: oklch(0.55 0.13 145);
-  --surface: oklch(0.995 0.003 105);
-  --soft: oklch(0.97 0.018 112);
-  --forest: oklch(0.275 0.08 148);
-  --sun: oklch(0.85 0.17 87);
+  --surface: oklch(0.99 0.006 100);
+  --soft: oklch(0.955 0.025 112);
+  --forest: oklch(0.31 0.075 151);
+  --sun: oklch(0.84 0.17 86);
   --accent-warm: oklch(0.69 0.19 52);
   --accent-warm-foreground: oklch(0.985 0.006 105);
   --ocean: oklch(0.55 0.12 220);
@@ -189,11 +189,15 @@
 }
 
 @utility bg-hero-overlay {
-  background: linear-gradient(90deg, color-mix(in oklab, var(--forest) 92%, transparent) 0%, color-mix(in oklab, var(--forest) 58%, transparent) 48%, color-mix(in oklab, var(--forest) 8%, transparent) 100%), linear-gradient(0deg, color-mix(in oklab, var(--forest) 65%, transparent), transparent 45%);
+  background: linear-gradient(90deg, color-mix(in oklab, var(--forest) 94%, transparent) 0%, color-mix(in oklab, var(--forest) 62%, transparent) 50%, color-mix(in oklab, var(--forest) 10%, transparent) 100%), linear-gradient(0deg, color-mix(in oklab, var(--forest) 56%, transparent), transparent 52%);
 }
 
 @utility shadow-card {
   box-shadow: 0 20px 45px -28px color-mix(in oklab, var(--forest) 35%, transparent);
+}
+
+@utility topo-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%232f7d4a' stroke-opacity='.10'%3E%3Cpath d='M-20 36C22 8 55 14 89 40s70 28 111-3'/%3E%3Cpath d='M-18 57c43-27 77-21 109 4s69 27 107-2'/%3E%3Cpath d='M-23 81c48-24 79-16 111 8s70 23 112-8'/%3E%3Cpath d='M-18 109c40-20 73-13 105 11s72 21 111-10'/%3E%3Cpath d='M-24 139c46-18 77-10 109 12s72 17 116-13'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 html { scroll-behavior: smooth; }
