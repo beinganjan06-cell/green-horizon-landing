@@ -213,7 +213,8 @@ const sectors = [
 
 function SectorExplorer() {
   const [active, setActive] = useState(0);
-  const sector = sectors[active];
+  const sector = sectors[active] ?? sectors[0];
+  if (!sector) return null;
   return (
     <section id="our-work" className="bg-surface py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
